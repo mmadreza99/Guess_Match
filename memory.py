@@ -35,7 +35,7 @@ class Game:
     def __init__(self):
         self.net = Network()
         self.WINDOW_WIDTH = 800
-        self.WINDOW_HEIGHT = 800
+        self.WINDOW_HEIGHT = 600
         self.player = Player()
         self.player2 = Player()
         self.BOARD_WIDTH = 4
@@ -54,7 +54,7 @@ class Game:
         self.font = pygame.font.SysFont("Verdana", 25)
         self.font_small = pygame.font.SysFont("Verdana", 20)
         self.screen = pygame.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT))
-        pygame.display.set_caption('Game')
+        pygame.display.set_caption('Guess & Match')
         pygame.font.init()
         self.screen.fill(self.BG_COLOR)
         background = pygame.Surface(self.screen.get_size())
@@ -95,9 +95,8 @@ class Game:
             fps_text = self.font_small.render(text, True, WHITE)
             pygame.draw.rect(self.screen, BLACK, pygame.Rect(0, self.WINDOW_HEIGHT - 20, self.WINDOW_WIDTH, 25))
             self.screen.blit(fps_text, (10, self.WINDOW_HEIGHT - 20))
-            # Send Network Stuff
+
             # self.player2.score, self.player2.turn = self.parse_data(self.send_data())
-            print(self.player2.score, self.player2.turn)
             tile_pos = self.get_tile_at_pos(x_mouse_pos, y_mouse_pos)
             if (tile_pos[0] is None and tile_pos[1] is None) and mouse_clicked:
                 new_game_rect = pygame.Rect(30, self.WINDOW_HEIGHT - 200, self.LEFT_PANEL - 50, 65)
@@ -198,7 +197,7 @@ class Game:
             score = score2
             player = 'Player 2'
         elif score1 == score2:
-            pygame.draw.rect(self.screen, GRAY, pygame.Rect(50, 170, 210, 460))
+            pygame.draw.rect(self.screen, GRAY, pygame.Rect(50, 70, 210, 460))
             text = "This game is equal"
             equal_text = self.font.render(text, True, BLACK)
             self.screen.blit(equal_text, (55, 275))
@@ -207,7 +206,7 @@ class Game:
 
         text = "{} Winner ({})".format(player, score)
         winner_text = self.font.render(text, True, BLACK)
-        pygame.draw.rect(self.screen, GREEN, pygame.Rect(50, 170, 210, 460))
+        pygame.draw.rect(self.screen, GREEN, pygame.Rect(50, 70, 210, 460))
         self.screen.blit(winner_text, (55, 275))
         pygame.time.wait(3000)
 
@@ -360,10 +359,10 @@ class Game:
         score_1_text = self.font_small.render(text1, True, BLACK)
         score_2_text = self.font_small.render(text2, True, BLACK)
         turn_text = self.font_small.render(text_turn, True, BLACK)
-        pygame.draw.rect(self.screen, DARK_RED, pygame.Rect(50, 170, 210, 460))
-        self.screen.blit(score_1_text, (55, 175))
-        self.screen.blit(score_2_text, (55, 250))
-        self.screen.blit(turn_text, (55, 350))
+        pygame.draw.rect(self.screen, DARK_RED, pygame.Rect(50, 70, 210, 460))
+        self.screen.blit(score_1_text, (55, 75))
+        self.screen.blit(score_2_text, (55, 150))
+        self.screen.blit(turn_text, (55, 250))
 
     def new_game(self):
         board = self.create_random_board()
